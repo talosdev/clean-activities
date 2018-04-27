@@ -34,9 +34,12 @@ dependencies {
     //dagger
     implementation "com.google.dagger:dagger:${rootProject.DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.DAGGER_VERSION}"
-    implementation "com.google.dagger:dagger-android:${rootProject.DAGGER_VERSION}"
-    annotationProcessor "com.google.dagger:dagger-android-compiler:${rootProject.DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android-support:${rootProject.DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${rootProject.DAGGER_VERSION}"
 
+
+    compile "com.jakewharton:butterknife:${rootProject.BUTTERKNIFE_VERSION}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.BUTTERKNIFE_VERSION}"
 
     testImplementation "junit:junit:${rootProject.JUNIT_VERSION}"
     testImplementation "org.mockito:mockito-core:${rootProject.MOCKITO_VERSION}"
