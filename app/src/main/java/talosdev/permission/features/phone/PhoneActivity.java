@@ -2,11 +2,15 @@ package talosdev.permission.features.phone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import talosdev.permission.R;
 
@@ -15,6 +19,11 @@ public class PhoneActivity extends AppCompatActivity implements PhoneContract.Vi
     @Inject
     PhoneContract.Presenter presenter;
 
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
 
     public static Intent newIntent(Context context) {
         Intent i = new Intent(context, PhoneActivity.class);
@@ -29,5 +38,9 @@ public class PhoneActivity extends AppCompatActivity implements PhoneContract.Vi
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity);
+        ButterKnife.bind(this);
+
+        viewPager.setAdapter(new PhonePageAdapter(getSupportFragmentManager(), getResources()));
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
