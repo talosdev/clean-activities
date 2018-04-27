@@ -20,9 +20,30 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // support
+    implementation "com.android.support:support-v13:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:appcompat-v7:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:support-annotations:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:design:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:preference-v14:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support:support-emoji:${rootProject.SUPPORT_VERSION}"
+    implementation "com.android.support.constraint:constraint-layout:${rootProject.CONSTRAINT_VERSION}"
+
+    //dagger
+    implementation "com.google.dagger:dagger:${rootProject.DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android:${rootProject.DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-android-compiler:${rootProject.DAGGER_VERSION}"
+
+
+    testImplementation "junit:junit:${rootProject.JUNIT_VERSION}"
+    testImplementation "org.mockito:mockito-core:${rootProject.MOCKITO_VERSION}"
+    androidTestCompile("com.android.support.test:runner:${rootProject.RUNNER_VERSION}") {
+        exclude(group: 'com.android.support', module: 'support-annotations')
+    }
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${rootProject.ESPRESSO_VERSION}") {
+        exclude group: 'com.google.code.findbugs'
+    }
 }
