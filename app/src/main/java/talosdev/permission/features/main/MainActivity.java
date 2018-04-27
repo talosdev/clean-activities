@@ -1,5 +1,6 @@
 package talosdev.permission.features.main;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.permission.R;
+import talosdev.permission.features.location.LocationActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -39,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void navigateToLocation() {
-        Toast.makeText(this, "LOCATION", Toast.LENGTH_SHORT).show();
+        Intent intent = LocationActivity.newIntent(this);
+        startActivity(intent);
     }
 
     @Override

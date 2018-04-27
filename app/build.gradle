@@ -33,6 +33,7 @@ dependencies {
 
     //dagger
     implementation "com.google.dagger:dagger:${rootProject.DAGGER_VERSION}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.DAGGER_VERSION}"
     implementation "com.google.dagger:dagger-android-support:${rootProject.DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-android-processor:${rootProject.DAGGER_VERSION}"
