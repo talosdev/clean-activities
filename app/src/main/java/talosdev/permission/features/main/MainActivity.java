@@ -1,5 +1,6 @@
 package talosdev.permission.features.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.permission.R;
 import talosdev.permission.features.location.LocationActivity;
+import talosdev.permission.features.phone.PhoneActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void navigateToPhone() {
-        Toast.makeText(this, "PHONE", Toast.LENGTH_SHORT).show();
-
+        Intent intent = PhoneActivity.newIntent(this);
+        startActivity(intent);
     }
 }

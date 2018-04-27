@@ -17,8 +17,10 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".features.location.LocationActivity"
-      android:label="@string/location_title"></activity>
+    <activity
+      android:name=".features.location.LocationActivity"
+      android:label="@string/location_title" />
+    <activity android:name=".features.phone.PhoneActivity"></activity>
   </application>
 
 </manifest>
