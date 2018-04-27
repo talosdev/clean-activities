@@ -3,4 +3,5 @@
   <string name="phone">Contacts and SMS</string>
   <string name="location">Location</string>
   <string name="location_title">Location</string>
+  <string name="phone_title">Phone</string>
 </resources>
