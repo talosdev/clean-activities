@@ -9,4 +9,7 @@
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="contacts_title">Contacts</string>
   <string name="sms_title">SMS</string>
+  <string name="longitude">Longitude</string>
+  <string name="latitude">Latitude</string>
+  <string name="location_header">Here is your current location</string>
 </resources>
