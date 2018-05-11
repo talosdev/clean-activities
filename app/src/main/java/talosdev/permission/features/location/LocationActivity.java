@@ -42,4 +42,14 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
 
         ButterKnife.bind(this);
     }
+
+    @Override
+    public void showLatitude(String latitude) {
+        latitudeTextView.setText(latitude);
+    }
+
+    @Override
+    public void showLongitude(String longitude) {
+        longitudeTextView.setText(longitude);
+    }
 }
