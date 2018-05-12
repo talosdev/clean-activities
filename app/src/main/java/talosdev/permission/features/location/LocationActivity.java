@@ -13,8 +13,10 @@ import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -112,7 +114,10 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
                         if (location != null) {
                             presenter.onLocationAvailable(location.getLatitude(), location.getLongitude());
                         } else {
-                            //TODO
+                            Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
+                                    Toast.LENGTH_SHORT).show();
+                            Log.w("LOCATION", "Are you using an emulator? " +
+                                    "Make sure you send a dummy location to the emulator through the emulator settings");
                         }
                     }
                 });
