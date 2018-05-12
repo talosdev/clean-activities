@@ -1,6 +1,4 @@
-package talosdev.permission.di;
-
-import android.app.Activity;
+package talosdev.clean.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

@@ -1,9 +1,9 @@
-package talosdev.permission;
+package talosdev.clean;
 
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import talosdev.permission.di.DaggerAppComponent;
+import talosdev.clean.di.DaggerAppComponent;
 
 public class ThisApplication extends DaggerApplication {
 

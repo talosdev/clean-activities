@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">PermissionRequestsMVP</string>
+  <string name="app_name">CLEAN Activities</string>
   <string name="phone">Contacts and SMS</string>
   <string name="location">Location</string>
   <string name="location_title">Location</string>

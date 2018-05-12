@@ -1,4 +1,4 @@
-package talosdev.permission.di;
+package talosdev.clean.di;
 
 import android.app.Application;
 import android.content.Context;
