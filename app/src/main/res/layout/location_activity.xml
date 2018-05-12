@@ -14,9 +14,30 @@
     android:padding="16dp">
 
     <TextView
+      android:id="@+id/softDenyTextView"
+      android:text="@string/softDeny"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:visibility="visible"
+      android:textColor="@color/warningSoft"
+      app:layout_constraintTop_toTopOf="parent"
+      style="@style/deniedWarning"/>
+
+    <TextView
+      android:id="@+id/hardDenyTextView"
+      android:text="@string/hardDeny"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:visibility="visible"
+      android:textColor="@color/warningHard"
+      app:layout_constraintTop_toTopOf="parent"
+      style="@style/deniedWarning" />
+
+    <TextView
       android:id="@+id/header"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="48dp"
       android:text="@string/location_header"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

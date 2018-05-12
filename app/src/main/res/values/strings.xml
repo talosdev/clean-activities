@@ -12,4 +12,6 @@
   <string name="longitude">Longitude</string>
   <string name="latitude">Latitude</string>
   <string name="location_header">Here is your current location</string>
+  <string name="softDeny">Click here to enable location permissions.</string>
+  <string name="hardDeny">You have previously denied location permissions. Click here to go to settings and enable them.</string>
 </resources>
