@@ -15,4 +15,5 @@
   <string name="softDeny">Click here to enable location permissions.</string>
   <string name="hardDeny">You have previously denied location permissions. Click here to go to settings and enable them.</string>
   <string name="error_accessing_location">There was an error retrieving your location.</string>
+  <string name="error_generic">An unexpected error has occured.</string>
 </resources>

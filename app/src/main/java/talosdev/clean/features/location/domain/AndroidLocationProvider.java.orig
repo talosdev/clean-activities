@@ -47,4 +47,9 @@ public class AndroidLocationProvider implements LocationProvider {
 
 
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+
+>>>>>>> Stashed changes

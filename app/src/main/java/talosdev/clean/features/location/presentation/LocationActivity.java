@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class LocationActivity extends AppCompatActivity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             hidePermissionDeniedWarning();
-//            getLocation();
+            presenter.getLocation();
         } else {
             requestPermission();
         }
@@ -96,7 +97,17 @@ public class LocationActivity extends AppCompatActivity
         longitudeTextView.setText(longitude);
     }
 
+    @Override
+    public void showNoLocationAvailable() {
+        Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
+                                            Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void showGenericError() {
+        Toast.makeText(LocationActivity.this, R.string.error_generic,
+                Toast.LENGTH_SHORT).show();
+    }
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this,
@@ -112,7 +123,7 @@ public class LocationActivity extends AppCompatActivity
         if (requestCode == REQ_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 hidePermissionDeniedWarning();
-//                getLocation();
+                presenter.getLocation();
             } else {
                 handlePermissionDenied();
             }
