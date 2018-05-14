@@ -1,4 +1,4 @@
-package talosdev.permission.features.location;
+package talosdev.clean.features.location;
 
 import java.lang.ref.WeakReference;
 

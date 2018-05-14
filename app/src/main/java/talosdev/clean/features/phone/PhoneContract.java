@@ -1,4 +1,4 @@
-package talosdev.permission.features.phone;
+package talosdev.clean.features.phone;
 
 public interface PhoneContract {
 

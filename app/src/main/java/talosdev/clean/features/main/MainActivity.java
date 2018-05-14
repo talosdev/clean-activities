@@ -1,20 +1,18 @@
-package talosdev.permission.features.main;
+package talosdev.clean.features.main;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
-import talosdev.permission.R;
-import talosdev.permission.features.location.LocationActivity;
-import talosdev.permission.features.phone.PhoneActivity;
+import talosdev.clean.features.location.LocationActivity;
+import talosdev.clean.features.phone.PhoneActivity;
+import talosdev.clean.R;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 

@@ -1,10 +1,10 @@
-package talosdev.permission.features.location.di;
+package talosdev.clean.features.location.di;
 
 import dagger.Binds;
 import dagger.Module;
-import talosdev.permission.features.location.LocationActivity;
-import talosdev.permission.features.location.LocationContract;
-import talosdev.permission.features.location.LocationPresenter;
+import talosdev.clean.features.location.LocationActivity;
+import talosdev.clean.features.location.LocationContract;
+import talosdev.clean.features.location.LocationPresenter;
 
 @Module
 public abstract class LocationModule {

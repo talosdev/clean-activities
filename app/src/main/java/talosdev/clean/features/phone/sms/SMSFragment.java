@@ -1,4 +1,4 @@
-package talosdev.permission.features.phone.sms;
+package talosdev.clean.features.phone.sms;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import talosdev.permission.R;
+import talosdev.clean.R;
+
 
 public class SMSFragment extends Fragment {
 

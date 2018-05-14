@@ -1,4 +1,4 @@
-package talosdev.permission.features.phone;
+package talosdev.clean.features.phone;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
-import talosdev.permission.R;
+import talosdev.clean.R;
 
 public class PhoneActivity extends AppCompatActivity implements PhoneContract.View {
 

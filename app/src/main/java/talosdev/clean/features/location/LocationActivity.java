@@ -1,4 +1,4 @@
-package talosdev.permission.features.location;
+package talosdev.clean.features.location;
 
 import android.Manifest;
 import android.content.Context;
@@ -31,7 +31,7 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
-import talosdev.permission.R;
+import talosdev.clean.R;
 
 public class LocationActivity extends AppCompatActivity implements LocationContract.View {
 

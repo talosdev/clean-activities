@@ -1,10 +1,10 @@
-package talosdev.permission.features.main.di;
+package talosdev.clean.features.main.di;
 
 import dagger.Binds;
 import dagger.Module;
-import talosdev.permission.features.main.MainActivity;
-import talosdev.permission.features.main.MainContract;
-import talosdev.permission.features.main.MainPresenter;
+import talosdev.clean.features.main.MainActivity;
+import talosdev.clean.features.main.MainContract;
+import talosdev.clean.features.main.MainPresenter;
 
 @Module
 public abstract class MainModule {

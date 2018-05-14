@@ -1,4 +1,4 @@
-package talosdev.permission.features.phone;
+package talosdev.clean.features.phone;
 
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import talosdev.permission.R;
-import talosdev.permission.features.phone.contacts.ContactsFragment;
-import talosdev.permission.features.phone.sms.SMSFragment;
+import talosdev.clean.features.phone.contacts.ContactsFragment;
+import talosdev.clean.features.phone.sms.SMSFragment;
+import talosdev.clean.R;
 
 class PhonePageAdapter extends FragmentPagerAdapter {
 
