@@ -22,7 +22,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".features.location.LocationActivity"
+      android:name="talosdev.clean.features.location.presentation.LocationActivity"
       android:parentActivityName=".features.main.MainActivity"
       android:label="@string/location_title" />
     <activity

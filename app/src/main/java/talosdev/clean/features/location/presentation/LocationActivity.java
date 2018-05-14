@@ -1,4 +1,4 @@
-package talosdev.clean.features.location;
+package talosdev.clean.features.location.presentation;
 
 import android.Manifest;
 import android.content.Context;

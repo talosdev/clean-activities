@@ -2,9 +2,9 @@ package talosdev.clean.features.location.di;
 
 import dagger.Binds;
 import dagger.Module;
-import talosdev.clean.features.location.LocationActivity;
-import talosdev.clean.features.location.LocationContract;
-import talosdev.clean.features.location.LocationPresenter;
+import talosdev.clean.features.location.presentation.LocationActivity;
+import talosdev.clean.features.location.presentation.LocationContract;
+import talosdev.clean.features.location.presentation.LocationPresenter;
 
 @Module
 public abstract class LocationModule {
