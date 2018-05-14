@@ -51,7 +51,8 @@ ext {
 
     AUTOVALUE_VERSION = '1.6'
 
-    RX_JAVA_VERSION = '2.1.1'
-    RX_ANDROID_VERSION = '2.0.1'
+
+    RXJAVA_VERSION = '2.1.13'
+    RXANDROID_VERSION = '2.0.2'
 
 }

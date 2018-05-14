@@ -4,23 +4,15 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.List;
 
@@ -62,7 +54,6 @@ public class LocationActivity extends AppCompatActivity
     @Inject
     LocationContract.Presenter presenter;
 
-    private FusedLocationProviderClient fusedLocationProviderClient;
 
 
     public static Intent newIntent(Context context) {
@@ -81,7 +72,6 @@ public class LocationActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
     @Override
@@ -90,7 +80,7 @@ public class LocationActivity extends AppCompatActivity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             hidePermissionDeniedWarning();
-            getLocation();
+//            getLocation();
         } else {
             requestPermission();
         }
@@ -106,25 +96,7 @@ public class LocationActivity extends AppCompatActivity
         longitudeTextView.setText(longitude);
     }
 
-    @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-    @SuppressWarnings({"MissingPermission"})
-    private void getLocation() {
-        fusedLocationProviderClient.getLastLocation()
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        presenter.onLocationAvailable(location.getLatitude(),
-                                location.getLongitude());
-                    } else {
-                        Toast.makeText(LocationActivity.this,
-                                R.string.error_accessing_location,
-                                Toast.LENGTH_SHORT)
-                                .show();
-                        Log.w("LOCATION", "Are you using an emulator? " +
-                                "Make sure you send a dummy location to the emulator " +
-                                "through the emulator settings");
-                    }
-                });
-    }
+
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this,
@@ -140,7 +112,7 @@ public class LocationActivity extends AppCompatActivity
         if (requestCode == REQ_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 hidePermissionDeniedWarning();
-                getLocation();
+//                getLocation();
             } else {
                 handlePermissionDenied();
             }
