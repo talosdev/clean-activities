@@ -13,7 +13,7 @@ import talosdev.clean.R;
 class PhonePageAdapter extends FragmentPagerAdapter {
 
 
-    private Resources resources;
+    private final Resources resources;
 
     public PhonePageAdapter(FragmentManager fm, Resources resources) {
         super(fm);

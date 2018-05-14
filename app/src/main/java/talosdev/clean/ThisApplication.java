@@ -8,11 +8,6 @@ import talosdev.clean.di.DaggerAppComponent;
 public class ThisApplication extends DaggerApplication {
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
-    @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         return DaggerAppComponent.builder()
                 .application(this)

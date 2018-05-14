@@ -17,7 +17,7 @@ import talosdev.clean.features.location.model.NoLocationAvailableException;
 
 public class AndroidLocationProvider implements LocationProvider {
 
-    private FusedLocationProviderClient fusedLocationProviderClient;
+    private final FusedLocationProviderClient fusedLocationProviderClient;
 
     @Inject
     public AndroidLocationProvider(Context context) {
