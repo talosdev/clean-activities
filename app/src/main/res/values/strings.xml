@@ -5,8 +5,6 @@
   <string name="location_title">Location</string>
   <string name="phone_title">Phone</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="contacts_title">Contacts</string>
   <string name="sms_title">SMS</string>
   <string name="longitude">Longitude</string>
@@ -15,5 +13,5 @@
   <string name="softDeny">Click here to enable location permissions.</string>
   <string name="hardDeny">You have previously denied location permissions. Click here to go to settings and enable them.</string>
   <string name="error_accessing_location">There was an error retrieving your location.</string>
-  <string name="error_generic">An unexpected error has occured.</string>
+  <string name="error_generic">An unexpected error has occurred.</string>
 </resources>

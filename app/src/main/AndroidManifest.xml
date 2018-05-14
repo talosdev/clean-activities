@@ -29,6 +29,6 @@
       android:name=".features.phone.PhoneActivity"
       android:label="@string/phone_title"
       android:parentActivityName=".features.main.MainActivity" />
-  </application>fi
+  </application>
 
 </manifest>
