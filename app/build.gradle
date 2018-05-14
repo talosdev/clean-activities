@@ -43,6 +43,10 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:${rootProject.DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-android-processor:${rootProject.DAGGER_VERSION}"
 
+    // autovalue
+    implementation "com.google.auto.value:auto-value-annotations:${rootProject.AUTOVALUE_VERSION}"
+    annotationProcessor "com.google.auto.value:auto-value:${rootProject.AUTOVALUE_VERSION}"
+    
     implementation "com.google.android.gms:play-services-location:${rootProject.GOOGLEPLAY_VERSION}"
 
     implementation "com.jakewharton:butterknife:${rootProject.BUTTERKNIFE_VERSION}"

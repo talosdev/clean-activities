@@ -2,7 +2,7 @@ package talosdev.clean.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import talosdev.clean.features.location.LocationActivity;
+import talosdev.clean.features.location.presentation.LocationActivity;
 import talosdev.clean.features.location.di.LocationModule;
 import talosdev.clean.features.main.MainActivity;
 import talosdev.clean.features.main.di.MainModule;

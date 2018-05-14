@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.clean.features.location.LocationActivity;
-import talosdev.clean.features.phone.PhoneActivity;
+import talosdev.clean.features.location.presentation.LocationActivity;
 import talosdev.clean.R;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
