@@ -7,8 +7,7 @@ import java.lang.ref.WeakReference;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
-import talosdev.clean.features.location.domain.LocationProvider;
-import talosdev.clean.features.location.model.Location;
+import talosdev.clean.features.location.domain.LocationInteractor;
 import talosdev.clean.features.location.model.NoLocationAvailableException;
 
 
@@ -17,13 +16,13 @@ public class LocationPresenter implements LocationContract.Presenter {
     private static final String TAG = "LOCATION";
 
     private final WeakReference<LocationContract.View> viewWeakReference;
-    private final LocationProvider locationProvider;
+    private final LocationInteractor interactor;
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     @Inject
-    public LocationPresenter(LocationContract.View view, LocationProvider locationProvider) {
+    public LocationPresenter(LocationContract.View view, LocationInteractor interactor) {
         this.viewWeakReference = new WeakReference<>(view);
-        this.locationProvider = locationProvider;
+        this.interactor = interactor;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class LocationPresenter implements LocationContract.Presenter {
     @Override
     public void getLocation() {
         disposables.add(
-                locationProvider.getLocation()
+                interactor.getLocation()
                         .subscribe(
                                 location -> {
                                     LocationContract.View view = viewWeakReference.get();
@@ -68,6 +67,5 @@ public class LocationPresenter implements LocationContract.Presenter {
     @Override
     public void cleanup() {
         disposables.clear();
-//        locationProvider.unregister();
     }
 }
