@@ -8,12 +8,18 @@ public interface LocationContract {
 
         void showLongitude(String longitude);
 
+        void showNoLocationAvailable();
+
+        void showGenericError();
     }
 
     interface Presenter {
 
         void onLocationAvailable(double latitude, double longitude);
 
+        void getLocation();
+
+        void cleanup();
     }
 
 }
