@@ -78,6 +78,7 @@ public class LocationActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             hidePermissionDeniedWarning();
@@ -170,4 +171,9 @@ public class LocationActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.cleanup();
+    }
 }
