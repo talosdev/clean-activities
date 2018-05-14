@@ -59,8 +59,3 @@ public class AndroidLocationProvider implements LocationProvider {
 
     }
 }
-
-
-
-
-}
