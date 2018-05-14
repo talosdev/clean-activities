@@ -46,7 +46,11 @@ dependencies {
     // autovalue
     implementation "com.google.auto.value:auto-value-annotations:${rootProject.AUTOVALUE_VERSION}"
     annotationProcessor "com.google.auto.value:auto-value:${rootProject.AUTOVALUE_VERSION}"
-    
+
+    // rxjava
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.RXJAVA_VERSION}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.RXANDROID_VERSION}"
+
     implementation "com.google.android.gms:play-services-location:${rootProject.GOOGLEPLAY_VERSION}"
 
     implementation "com.jakewharton:butterknife:${rootProject.BUTTERKNIFE_VERSION}"

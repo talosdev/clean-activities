@@ -4,6 +4,9 @@ import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
+import talosdev.clean.features.location.domain.LocationProvider;
+import talosdev.clean.features.location.model.Location;
+
 
 public class LocationPresenter implements LocationContract.Presenter {
 
