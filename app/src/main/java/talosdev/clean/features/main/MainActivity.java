@@ -10,9 +10,9 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
-import talosdev.clean.features.location.LocationActivity;
 import talosdev.clean.features.location.presentation.LocationActivity;
 import talosdev.clean.R;
+import talosdev.clean.features.phone.PhoneActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
