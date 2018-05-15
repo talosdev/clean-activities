@@ -108,17 +108,14 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     @SuppressWarnings({"MissingPermission"})
     private void getLocation() {
         fusedLocationProviderClient.getLastLocation()
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            presenter.onLocationAvailable(location.getLatitude(), location.getLongitude());
-                        } else {
-                            Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
-                                    Toast.LENGTH_SHORT).show();
-                            Log.w("LOCATION", "Are you using an emulator? " +
-                                    "Make sure you send a dummy location to the emulator through the emulator settings");
-                        }
+                .addOnSuccessListener(location -> {
+                    if (location != null) {
+                        presenter.onLocationAvailable(location.getLatitude(), location.getLongitude());
+                    } else {
+                        Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
+                                Toast.LENGTH_SHORT).show();
+                        Log.w("LOCATION", "Are you using an emulator? " +
+                                "Make sure you send a dummy location to the emulator through the emulator settings");
                     }
                 });
     }
