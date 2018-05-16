@@ -29,7 +29,6 @@ import talosdev.clean.R;
 public class LocationActivity extends AppCompatActivity
         implements LocationContract.View {
 
-
     private static final int REQ_CODE = 111;
 
     @BindView(R.id.latitudeTextView)
@@ -47,15 +46,13 @@ public class LocationActivity extends AppCompatActivity
     @BindViews({R.id.softDenyTextView, R.id.hardDenyTextView})
     List<TextView> deniedTextViews;
 
-    private static ButterKnife.Action<View> VISIBLE =
+    private static final ButterKnife.Action<View> VISIBLE =
             (v, index) -> v.setVisibility(View.VISIBLE);
-    private static ButterKnife.Action<View> GONE =
+    private static final ButterKnife.Action<View> GONE =
             (v, index) -> v.setVisibility(View.GONE);
 
     @Inject
     LocationContract.Presenter presenter;
-
-
 
     public static Intent newIntent(Context context) {
         Intent i = new Intent(context, LocationActivity.class);
@@ -72,7 +69,6 @@ public class LocationActivity extends AppCompatActivity
         setContentView(R.layout.location_activity);
 
         ButterKnife.bind(this);
-
     }
 
     @Override
