@@ -8,8 +8,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import talosdev.clean.features.location.domain.LocationInteractor;
-import talosdev.clean.features.location.model.NoLocationAvailableException;
-
+import talosdev.clean.features.location.domain.model.NoLocationAvailableException;
 
 public class LocationPresenter implements LocationContract.Presenter {
 

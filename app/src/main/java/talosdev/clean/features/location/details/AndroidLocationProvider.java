@@ -1,4 +1,4 @@
-package talosdev.clean.features.location.domain;
+package talosdev.clean.features.location.details;
 
 import android.Manifest;
 import android.content.Context;
@@ -12,8 +12,9 @@ import com.google.android.gms.location.LocationServices;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
-import talosdev.clean.features.location.model.Location;
-import talosdev.clean.features.location.model.NoLocationAvailableException;
+import talosdev.clean.features.location.domain.LocationProvider;
+import talosdev.clean.features.location.domain.model.Location;
+import talosdev.clean.features.location.domain.model.NoLocationAvailableException;
 
 public class AndroidLocationProvider implements LocationProvider {
 
@@ -35,10 +36,12 @@ public class AndroidLocationProvider implements LocationProvider {
                         .getLastLocation()
                         .addOnSuccessListener(location -> {
                                     if (location != null) {
-                                        emitter.onSuccess(Location.create(location.getLatitude(), location.getLongitude()));
+                                        emitter.onSuccess(Location.create(location.getLatitude(),
+                                                location.getLongitude()));
                                     } else {
                                         Log.w("LOCATION", "Are you using an emulator? " +
-                                                "Make sure you send a dummy location to the emulator through the emulator settings");
+                                                "Make sure you send a dummy location " +
+                                                "to the emulator through the emulator settings");
                                         emitter.onError(new NoLocationAvailableException());
                                     }
                                 }
