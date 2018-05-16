@@ -15,8 +15,6 @@ public interface LocationContract {
 
     interface Presenter {
 
-        void onLocationAvailable(double latitude, double longitude);
-
         void getLocation();
 
         void cleanup();
