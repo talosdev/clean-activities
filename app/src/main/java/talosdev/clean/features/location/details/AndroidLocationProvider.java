@@ -2,6 +2,7 @@ package talosdev.clean.features.location.details;
 
 import android.Manifest;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class AndroidLocationProvider implements LocationProvider {
 
     @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     @SuppressWarnings({"MissingPermission"})
-    @Nullable
+    @NonNull
     @Override
     public Single<Location> getLocation() {
 
