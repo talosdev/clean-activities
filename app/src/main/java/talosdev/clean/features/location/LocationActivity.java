@@ -85,7 +85,8 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     protected void onStart() {
         super.onStart();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
             hidePermissionDeniedWarning();
             getLocation();
         } else {
@@ -171,12 +172,12 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     }
 
     @OnClick(R.id.softDenyTextView)
-    public void softDenyTextViewClicked(View view) {
+    void softDenyTextViewClicked(View view) {
         requestPermission();
     }
 
     @OnClick(R.id.hardDenyTextView)
-    public void hardDenyTextViewClicked(View view) {
+    void hardDenyTextViewClicked(View view) {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", getPackageName(), null);
