@@ -3,7 +3,7 @@ package talosdev.clean.features.location.domain;
 import android.support.annotation.Nullable;
 
 import io.reactivex.Single;
-import talosdev.clean.features.location.model.Location;
+import talosdev.clean.features.location.domain.model.Location;
 
 public interface LocationProvider {
 

@@ -2,7 +2,7 @@ package talosdev.clean.features.location.di;
 
 import dagger.Binds;
 import dagger.Module;
-import talosdev.clean.features.location.domain.AndroidLocationProvider;
+import talosdev.clean.features.location.details.AndroidLocationProvider;
 import talosdev.clean.features.location.domain.LocationProvider;
 import talosdev.clean.features.location.presentation.LocationActivity;
 import talosdev.clean.features.location.presentation.LocationContract;

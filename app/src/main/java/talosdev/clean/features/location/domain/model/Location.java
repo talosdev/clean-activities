@@ -1,4 +1,4 @@
-package talosdev.clean.features.location.model;
+package talosdev.clean.features.location.domain.model;
 
 import com.google.auto.value.AutoValue;
 
