@@ -25,15 +25,6 @@ public class LocationPresenter implements LocationContract.Presenter {
     }
 
     @Override
-    public void onLocationAvailable(double latitude, double longitude) {
-        LocationContract.View view = viewWeakReference.get();
-        if (view != null) {
-            view.showLatitude(String.valueOf(latitude));
-            view.showLongitude(String.valueOf(longitude));
-        }
-    }
-
-    @Override
     public void getLocation() {
         disposables.add(
                 interactor.getLocation()
