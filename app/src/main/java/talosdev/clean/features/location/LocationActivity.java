@@ -33,7 +33,8 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.clean.R;
 
-public class LocationActivity extends AppCompatActivity implements LocationContract.View {
+public class LocationActivity extends AppCompatActivity
+        implements LocationContract.View {
 
 
     private static final int REQ_CODE = 111;
@@ -53,8 +54,10 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     @BindViews({R.id.softDenyTextView, R.id.hardDenyTextView})
     List<TextView> deniedTextViews;
 
-    private static ButterKnife.Action<View> VISIBLE = (v, index) -> v.setVisibility(View.VISIBLE);
-    private static ButterKnife.Action<View> GONE = (v, index) -> v.setVisibility(View.GONE);
+    private static ButterKnife.Action<View> VISIBLE =
+            (v, index) -> v.setVisibility(View.VISIBLE);
+    private static ButterKnife.Action<View> GONE =
+            (v, index) -> v.setVisibility(View.GONE);
 
     @Inject
     LocationContract.Presenter presenter;
@@ -84,7 +87,6 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     @Override
     protected void onStart() {
         super.onStart();
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             hidePermissionDeniedWarning();
@@ -93,7 +95,6 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
             requestPermission();
         }
     }
-
 
     @Override
     public void showLatitude(String latitude) {
@@ -111,12 +112,16 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
         fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(location -> {
                     if (location != null) {
-                        presenter.onLocationAvailable(location.getLatitude(), location.getLongitude());
+                        presenter.onLocationAvailable(location.getLatitude(),
+                                location.getLongitude());
                     } else {
-                        Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationActivity.this,
+                                R.string.error_accessing_location,
+                                Toast.LENGTH_SHORT)
+                                .show();
                         Log.w("LOCATION", "Are you using an emulator? " +
-                                "Make sure you send a dummy location to the emulator through the emulator settings");
+                                "Make sure you send a dummy location to the emulator " +
+                                "through the emulator settings");
                     }
                 });
     }
@@ -125,13 +130,12 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 REQ_CODE);
-
     }
-
 
     @Override
     @SuppressWarnings({"MissingPermission"})
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == REQ_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -144,7 +148,6 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
 
     private void handlePermissionDenied() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -164,7 +167,6 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
         ButterKnife.apply(softDeniedWarningTextView, VISIBLE);
         ButterKnife.apply(hardDeniedWarningTextView, GONE);
     }
-
 
     private void showHardPermissionDeniedWarning() {
         ButterKnife.apply(hardDeniedWarningTextView, VISIBLE);
@@ -186,6 +188,3 @@ public class LocationActivity extends AppCompatActivity implements LocationContr
     }
 
 }
-
-
-
