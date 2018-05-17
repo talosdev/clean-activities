@@ -7,6 +7,7 @@ import java.lang.ref.WeakReference;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
+import talosdev.clean.common.PermissionRequestHandler;
 import talosdev.clean.features.location.domain.LocationInteractor;
 import talosdev.clean.features.location.domain.model.NoLocationAvailableException;
 
@@ -16,12 +17,16 @@ public class LocationPresenter implements LocationContract.Presenter {
 
     private final WeakReference<LocationContract.View> viewWeakReference;
     private final LocationInteractor interactor;
+    private PermissionRequestHandler permissionRequestHandler;
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     @Inject
-    public LocationPresenter(LocationContract.View view, LocationInteractor interactor) {
+    public LocationPresenter(LocationContract.View view,
+                             LocationInteractor interactor,
+                             PermissionRequestHandler permissionRequestHandler) {
         this.viewWeakReference = new WeakReference<>(view);
         this.interactor = interactor;
+        this.permissionRequestHandler = permissionRequestHandler;
     }
 
     @Override
