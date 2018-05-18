@@ -30,6 +30,29 @@ public class LocationPresenter implements LocationContract.Presenter {
     }
 
     @Override
+    public void init() {
+        disposables.add(
+                permissionRequestHandler.getResultStream()
+                .subscribe(
+                        this::handleResult,
+                        throwable -> Log.e(TAG, "An error occurred on the permission request " +
+                                "result stream", throwable)
+                )
+        );
+    }
+
+    private void handleResult(Boolean granted) {
+        LocationContract.View view = viewWeakReference.get();
+        if (view != null) {
+            if (granted) {
+                getLocation();
+            } else {
+                view.showNeedPermission();
+            }
+        }
+    }
+
+    @Override
     public void getLocation() {
         disposables.add(
                 interactor.getLocation()

@@ -15,6 +15,8 @@ public interface LocationContract {
 
     interface Presenter {
 
+        void init();
+
         void getLocation();
 
         void cleanup();
