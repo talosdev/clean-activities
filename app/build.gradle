@@ -50,10 +50,10 @@ dependencies {
 
     testImplementation "junit:junit:${rootProject.JUNIT_VERSION}"
     testImplementation "org.mockito:mockito-core:${rootProject.MOCKITO_VERSION}"
-    androidTestCompile("com.android.support.test:runner:${rootProject.RUNNER_VERSION}") {
+    androidTestImplementation("com.android.support.test:runner:${rootProject.RUNNER_VERSION}") {
         exclude(group: 'com.android.support', module: 'support-annotations')
     }
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${rootProject.ESPRESSO_VERSION}") {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${rootProject.ESPRESSO_VERSION}") {
         exclude group: 'com.google.code.findbugs'
     }
 }
