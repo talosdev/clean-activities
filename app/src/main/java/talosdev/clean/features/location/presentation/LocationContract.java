@@ -11,15 +11,21 @@ public interface LocationContract {
         void showNoLocationAvailable();
 
         void showGenericError();
+
+        void showSoftDenied();
+
+        void showHardDenied();
+
+        void hidePermissionDeniedWarning();
     }
 
     interface Presenter {
 
         void init();
 
-        void getLocation();
-
         void cleanup();
+
+        void requestPermissionIfRequired();
     }
 
 }

@@ -2,6 +2,7 @@ package talosdev.clean.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import talosdev.clean.di.scope.ActivityScope;
 import talosdev.clean.features.location.presentation.LocationActivity;
 import talosdev.clean.features.location.di.LocationModule;
 import talosdev.clean.features.main.MainActivity;
@@ -15,7 +16,7 @@ public abstract class ActivityComponentBindModule {
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity bindMainsActivity();
 
-
+    @ActivityScope
     @ContributesAndroidInjector(modules = LocationModule.class)
     abstract LocationActivity bindLocationActivity();
 

@@ -1,6 +1,5 @@
 package talosdev.clean.features.location.presentation;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,8 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -25,11 +24,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.clean.R;
+import talosdev.clean.common.PermissionRequestHandler;
 
 public class LocationActivity extends AppCompatActivity
         implements LocationContract.View {
 
-    private static final int REQ_CODE = 111;
 
     @BindView(R.id.latitudeTextView)
     TextView latitudeTextView;
@@ -54,6 +53,13 @@ public class LocationActivity extends AppCompatActivity
     @Inject
     LocationContract.Presenter presenter;
 
+    @Inject
+    PermissionRequestHandler permissionRequestHandler;
+
+    @Inject
+    @Named("locationReqCode")
+    Integer requestCode;
+
     public static Intent newIntent(Context context) {
         Intent i = new Intent(context, LocationActivity.class);
         Bundle b = new Bundle();
@@ -72,16 +78,15 @@ public class LocationActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        presenter.init();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            hidePermissionDeniedWarning();
-            presenter.getLocation();
-        } else {
-            requestPermission();
-        }
+        presenter.requestPermissionIfRequired();
     }
 
     @Override
@@ -97,7 +102,7 @@ public class LocationActivity extends AppCompatActivity
     @Override
     public void showNoLocationAvailable() {
         Toast.makeText(LocationActivity.this, R.string.error_accessing_location,
-                                            Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -106,56 +111,28 @@ public class LocationActivity extends AppCompatActivity
                 Toast.LENGTH_SHORT).show();
     }
 
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                REQ_CODE);
-    }
-
     @Override
-    @SuppressWarnings({"MissingPermission"})
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQ_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                hidePermissionDeniedWarning();
-                presenter.getLocation();
-            } else {
-                handlePermissionDenied();
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-
-    private void handlePermissionDenied() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)) {
-            showSoftPermissionDeniedWarning();
-        } else {
-            // user has checked the "Do not ask again" checkbox
-            showHardPermissionDeniedWarning();
-        }
-    }
-
-    private void hidePermissionDeniedWarning() {
-        ButterKnife.apply(deniedTextViews, GONE);
-    }
-
-    private void showSoftPermissionDeniedWarning() {
+    public void showSoftDenied() {
         ButterKnife.apply(softDeniedWarningTextView, VISIBLE);
         ButterKnife.apply(hardDeniedWarningTextView, GONE);
     }
 
-    private void showHardPermissionDeniedWarning() {
+    @Override
+    public void showHardDenied() {
         ButterKnife.apply(hardDeniedWarningTextView, VISIBLE);
         ButterKnife.apply(softDeniedWarningTextView, GONE);
     }
 
+
+    @Override
+    public void hidePermissionDeniedWarning() {
+        ButterKnife.apply(deniedTextViews, GONE);
+    }
+
+
     @OnClick(R.id.softDenyTextView)
     void softDenyTextViewClicked(View view) {
-        requestPermission();
+        presenter.requestPermissionIfRequired();
     }
 
     @OnClick(R.id.hardDenyTextView)
@@ -171,5 +148,22 @@ public class LocationActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         presenter.cleanup();
+    }
+
+
+    @Override
+    @SuppressWarnings({"MissingPermission"})
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == requestCode) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                permissionRequestHandler.onPermissionGranted();
+            } else {
+                permissionRequestHandler.onPermissionDenied();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

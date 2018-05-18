@@ -33,33 +33,46 @@ public class LocationPresenter implements LocationContract.Presenter {
     public void init() {
         disposables.add(
                 permissionRequestHandler.getResultStream()
-                .subscribe(
-                        this::handleResult,
-                        throwable -> Log.e(TAG, "An error occurred on the permission request " +
-                                "result stream", throwable)
-                )
+                        .subscribe(
+                                this::handleResult,
+                                throwable -> Log.e(TAG, "An error occurred on the permission request " +
+                                        "result stream", throwable)
+                        )
         );
     }
 
-    private void handleResult(Boolean granted) {
+    @Override
+    public void requestPermissionIfRequired() {
+        if (!permissionRequestHandler.checkHasPermission()) {
+            permissionRequestHandler.requestPermission();
+        }
+    }
+
+    private void handleResult(PermissionRequestHandler.PermissionRequestResult result) {
         LocationContract.View view = viewWeakReference.get();
         if (view != null) {
-            if (granted) {
-                getLocation();
-            } else {
-                view.showNeedPermission();
+            switch (result) {
+                case GRANTED:
+                    getLocation();
+                    break;
+                case DENIED_SOFT:
+                    view.showSoftDenied();
+                    break;
+                case DENIED_HARD:
+                    view.showHardDenied();
+                    break;
             }
         }
     }
 
-    @Override
-    public void getLocation() {
+    private void getLocation() {
         disposables.add(
                 interactor.getLocation()
                         .subscribe(
                                 location -> {
                                     LocationContract.View view = viewWeakReference.get();
                                     if (view != null) {
+                                        view.hidePermissionDeniedWarning();
                                         view.showLatitude(String.valueOf(location.latitude()));
                                         view.showLongitude(String.valueOf(location.longitude()));
                                     }
@@ -67,7 +80,7 @@ public class LocationPresenter implements LocationContract.Presenter {
                                 throwable -> {
                                     LocationContract.View view = viewWeakReference.get();
                                     if (view != null) {
-                                        Log.e(TAG,"Error while getting location", throwable);
+                                        Log.e(TAG, "Error while getting location", throwable);
                                         if (throwable instanceof NoLocationAvailableException) {
                                             view.showNoLocationAvailable();
                                         } else {
@@ -76,7 +89,6 @@ public class LocationPresenter implements LocationContract.Presenter {
 
                                     }
                                 }
-
                         )
         );
     }
@@ -86,4 +98,6 @@ public class LocationPresenter implements LocationContract.Presenter {
     public void cleanup() {
         disposables.clear();
     }
+
+
 }
