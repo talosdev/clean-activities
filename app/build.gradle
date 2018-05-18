@@ -45,7 +45,7 @@ dependencies {
 
     implementation "com.google.android.gms:play-services-location:${rootProject.GOOGLEPLAY_VERSION}"
 
-    compile "com.jakewharton:butterknife:${rootProject.BUTTERKNIFE_VERSION}"
+    implementation "com.jakewharton:butterknife:${rootProject.BUTTERKNIFE_VERSION}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.BUTTERKNIFE_VERSION}"
 
     testImplementation "junit:junit:${rootProject.JUNIT_VERSION}"
