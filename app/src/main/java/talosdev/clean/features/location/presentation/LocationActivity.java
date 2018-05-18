@@ -86,7 +86,7 @@ public class LocationActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.requestPermissionIfRequired();
+        presenter.loadData();
     }
 
     @Override
@@ -132,7 +132,7 @@ public class LocationActivity extends AppCompatActivity
 
     @OnClick(R.id.softDenyTextView)
     void softDenyTextViewClicked(View view) {
-        presenter.requestPermissionIfRequired();
+        presenter.loadData();
     }
 
     @OnClick(R.id.hardDenyTextView)

@@ -42,9 +42,11 @@ public class LocationPresenter implements LocationContract.Presenter {
     }
 
     @Override
-    public void requestPermissionIfRequired() {
+    public void loadData() {
         if (!permissionRequestHandler.checkHasPermission()) {
             permissionRequestHandler.requestPermission();
+        } else {
+            getLocation();
         }
     }
 

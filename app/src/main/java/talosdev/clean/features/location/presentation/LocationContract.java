@@ -21,11 +21,18 @@ public interface LocationContract {
 
     interface Presenter {
 
+        /**
+         * Initializes the presenter
+         */
         void init();
 
-        void cleanup();
+        /**
+         * Signals the presenter to start the process for fetching the location.
+         * If permissions are required, requesting them will be handled inside this process
+         */
+        void loadData();
 
-        void requestPermissionIfRequired();
+        void cleanup();
     }
 
 }
