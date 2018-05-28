@@ -1,4 +1,4 @@
-package talosdev.clean.common;
+package talosdev.clean.common.details;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -11,6 +11,7 @@ import java.lang.ref.WeakReference;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
+import talosdev.clean.common.PermissionRequestHandler;
 
 public class RuntimePermissionRequestHandler implements PermissionRequestHandler {
     
@@ -53,21 +54,21 @@ public class RuntimePermissionRequestHandler implements PermissionRequestHandler
         return publishSubject;
     }
     
-    @Override
-    public void onPermissionGranted() {
-        publishSubject.onNext(PermissionRequestResult.GRANTED);
-    }
-    
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onPermissionDenied() {
-        Activity activity = activityWeakReference.get();
-        if (activity != null) {
-            publishSubject.onNext(
+    public void onPermissionRequestResult(boolean granted) {
+        if (granted) {
+            publishSubject.onNext(PermissionRequestResult.GRANTED);
+        } else {
+            Activity activity = activityWeakReference.get();
+            if (activity != null) {
+                publishSubject.onNext(
                     activity.shouldShowRequestPermissionRationale(permission)
-                            ? PermissionRequestResult.DENIED_SOFT
-                            : PermissionRequestResult.DENIED_HARD
-            );
+                        ? PermissionRequestResult.DENIED_SOFT
+                        : PermissionRequestResult.DENIED_HARD
+                );
+            }
         }
     }
+    
+    
 }

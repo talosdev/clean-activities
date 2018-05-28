@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 import talosdev.clean.R;
-import talosdev.clean.common.PermissionRequestHandler;
+import talosdev.clean.common.details.PermissionsRequestResultDispatcher;
 
 public class LocationActivity extends AppCompatActivity
         implements LocationContract.View {
@@ -54,11 +54,11 @@ public class LocationActivity extends AppCompatActivity
     LocationContract.Presenter presenter;
 
     @Inject
-    PermissionRequestHandler permissionRequestHandler;
+    PermissionsRequestResultDispatcher permissionsRequestResultDispatcher;
 
     @Inject
     @Named("locationReqCode")
-    Integer requestCode;
+    Integer locationRequestCode;
 
     public static Intent newIntent(Context context) {
         Intent i = new Intent(context, LocationActivity.class);
@@ -156,11 +156,11 @@ public class LocationActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == requestCode) {
+        if (requestCode == locationRequestCode) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                permissionRequestHandler.onPermissionGranted();
+                permissionsRequestResultDispatcher.dispatchResult(true);
             } else {
-                permissionRequestHandler.onPermissionDenied();
+                permissionsRequestResultDispatcher.dispatchResult(false);
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);

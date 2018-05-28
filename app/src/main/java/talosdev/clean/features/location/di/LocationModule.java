@@ -5,7 +5,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import talosdev.clean.common.PermissionRequestHandler;
-import talosdev.clean.common.RuntimePermissionRequestHandler;
+import talosdev.clean.common.details.RuntimePermissionRequestHandler;
 import talosdev.clean.di.scope.ActivityScope;
 import talosdev.clean.features.location.details.AndroidLocationProvider;
 import talosdev.clean.features.location.domain.LocationProvider;
@@ -36,9 +36,14 @@ public abstract class LocationModule {
         return LOCATION_PERMISSION_REQUEST_CODE;
     }
 
+    
+    @ActivityScope
+    @Binds
+    abstract PermissionRequestHandler bindPermissionRequestHandler(RuntimePermissionRequestHandler runtimePermissionRequestHandler);
+    
     @ActivityScope
     @Provides
-    static PermissionRequestHandler providePermissionRequestHandler(LocationActivity activity, @Named("locationReqCode") Integer reqCode) {
+    static RuntimePermissionRequestHandler providePermissionRequestHandler(LocationActivity activity, @Named("locationReqCode") Integer reqCode) {
         return new RuntimePermissionRequestHandler(activity, Manifest.permission.ACCESS_FINE_LOCATION, reqCode);
     }
 }
