@@ -77,7 +77,7 @@ public class LocationActivity extends AppCompatActivity
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            hidePermissionDeniedWarning();
+            hidePermissionDeniedWarnings();
             presenter.getLocation();
         } else {
             requestPermission();
@@ -119,7 +119,7 @@ public class LocationActivity extends AppCompatActivity
                                            @NonNull int[] grantResults) {
         if (requestCode == REQ_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                hidePermissionDeniedWarning();
+                hidePermissionDeniedWarnings();
                 presenter.getLocation();
             } else {
                 handlePermissionDenied();
@@ -139,7 +139,7 @@ public class LocationActivity extends AppCompatActivity
         }
     }
 
-    private void hidePermissionDeniedWarning() {
+    private void hidePermissionDeniedWarnings() {
         ButterKnife.apply(deniedTextViews, GONE);
     }
 
