@@ -1,21 +1,13 @@
 package talosdev.clean.common;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface PermissionRequestHandler {
     
     boolean checkHasPermission();
     
-    void requestPermission();
+    Single<PermissionRequestResult> requestPermission();
     
-    /**
-     * Observable, and not a Single, because the user might initiate the permission request process
-     * multiple times.
-     * @return
-     */
-    Observable<PermissionRequestResult> getResultStream();
-    
-
     enum PermissionRequestResult {
         GRANTED,
         DENIED_SOFT,

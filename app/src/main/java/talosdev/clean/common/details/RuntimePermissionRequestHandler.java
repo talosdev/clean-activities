@@ -9,8 +9,8 @@ import android.support.v4.content.ContextCompat;
 
 import java.lang.ref.WeakReference;
 
-import io.reactivex.Observable;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.Single;
+import io.reactivex.subjects.AsyncSubject;
 import talosdev.clean.common.PermissionRequestHandler;
 
 public class RuntimePermissionRequestHandler implements PermissionRequestHandler {
@@ -18,14 +18,13 @@ public class RuntimePermissionRequestHandler implements PermissionRequestHandler
     private final WeakReference<Activity> activityWeakReference;
     private final String permission;
     private final int requestCode;
-    private final PublishSubject<PermissionRequestResult> publishSubject;
+    private AsyncSubject<PermissionRequestResult> subject;
     
     // TODO - think about supporting multiple permissions
     public RuntimePermissionRequestHandler(Activity activity, String permission, int requestCode) {
         this.activityWeakReference = new WeakReference<>(activity);
         this.permission = permission;
         this.requestCode = requestCode;
-        publishSubject = PublishSubject.create();
     }
     
     @Override
@@ -33,40 +32,43 @@ public class RuntimePermissionRequestHandler implements PermissionRequestHandler
         if (activityWeakReference.get() != null) {
             Activity activity = activityWeakReference.get();
             return ContextCompat.checkSelfPermission(activity, permission)
-                    == PackageManager.PERMISSION_GRANTED;
+                == PackageManager.PERMISSION_GRANTED;
         }
         
         return false;
     }
     
     @Override
-    public void requestPermission() {
+    public Single<PermissionRequestResult> requestPermission() {
+        subject = AsyncSubject.create();
+        
         if (activityWeakReference.get() != null) {
             ActivityCompat.requestPermissions(
-                    activityWeakReference.get(),
-                    new String[] {permission},
-                    requestCode);
+                activityWeakReference.get(),
+                new String[] {permission},
+                requestCode);
         }
+        
+        return subject.firstOrError();
     }
-
-    @Override
-    public Observable<PermissionRequestResult> getResultStream() {
-        return publishSubject;
-    }
+    
     
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void onPermissionRequestResult(boolean granted) {
-        if (granted) {
-            publishSubject.onNext(PermissionRequestResult.GRANTED);
-        } else {
-            Activity activity = activityWeakReference.get();
-            if (activity != null) {
-                publishSubject.onNext(
-                    activity.shouldShowRequestPermissionRationale(permission)
-                        ? PermissionRequestResult.DENIED_SOFT
-                        : PermissionRequestResult.DENIED_HARD
-                );
+        if (subject != null) {
+            if (granted) {
+                subject.onNext(PermissionRequestResult.GRANTED);
+            } else {
+                Activity activity = activityWeakReference.get();
+                if (activity != null) {
+                    subject.onNext(
+                        activity.shouldShowRequestPermissionRationale(permission)
+                            ? PermissionRequestResult.DENIED_SOFT
+                            : PermissionRequestResult.DENIED_HARD
+                    );
+                }
             }
+            subject.onComplete();
         }
     }
     

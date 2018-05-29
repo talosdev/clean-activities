@@ -78,12 +78,6 @@ public class LocationActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        presenter.init();
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
         presenter.loadData();
